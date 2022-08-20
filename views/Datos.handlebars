@@ -1,0 +1,135 @@
+<h1>Skate Park</h1>
+
+
+<div class="py-4">
+  <h2>Datos del perfil</h2>
+  <hr class="w-50" />
+
+  
+    <div class="form-group row w-50 m-auto">
+      <div class="form-group col-12 col-sm-6">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          class="form-control m-auto"
+          disabled
+          value="{{email}}"
+        />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" class="form-control m-auto" value="{{nombre}}" name="nombre" />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          class="form-control m-auto"
+          value="{{password}}"
+        />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label for="repetir_password">Repita la password</label>
+        <input
+          id="repetir_password"
+          name="repetir_password"
+          type="password"
+          class="form-control m-auto"
+          value="{{password}}"
+        />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label for="anos_experiencia">Años de experiencia</label>
+        <input id="anos_experiencia" class="form-control m-auto" value="{{anos_experiencia}}" name="anos_experiencia" />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label for="especialidad">Especialidad</label>
+        <input
+          id="especialidad"
+          class="form-control m-auto"
+          value="{{especialidad}}"
+          name="especialidad"
+        />
+      </div>
+    </div>
+    <div class="mb-1">
+      <button class="btn btn-primary" onclick="actualizar()">Actualizar</button>
+    </div>
+    <div>
+      <button class="btn btn-danger" onclick="eliminar()">Eliminar cuenta</button>
+    </div>
+    
+  
+</div>
+
+<script >
+
+  $(document).ready(async function(){
+    let token= localStorage.getItem("token");
+    
+    const decode = await axios.post(`/pages/verify`,[{	"token": token,}]);
+    const email = decode.data.userLogin.email
+    //$("#email").val(email);
+  });
+
+  const verify = async ()=>{
+    let token= localStorage.getItem("token");
+    const res = await axios.post(`/pages/verify`,[{	"token": token,}]);
+    return res.data;
+  
+  }
+  
+
+  const actualizar = async ()=>{
+    if(verify()){
+      try {
+      let email = document.getElementById("email").value;
+      let nombre = document.getElementById("nombre").value;
+      let password = document.getElementById("password").value;
+      let repetir_password = document.getElementById("repetir_password").value;
+      let anos_experiencia = document.getElementById("anos_experiencia").value;
+      let especialidad = document.getElementById("especialidad").value;
+      
+      
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('nombre', nombre);
+      formData.append('password', password);
+      formData.append('repetir_password', repetir_password);
+      formData.append('anos_experiencia', anos_experiencia);
+      formData.append('especialidad', especialidad);
+      const response = await axios.put('/usuario',formData);
+      console.log(response);
+      } 
+      catch (error) {
+        console.error(error);
+        }
+    }else{
+      console.log("error de token")
+    }
+    
+    
+        }
+  const eliminar = async ()=>{
+    try {
+      let email = document.getElementById("email").value;
+      const formDataDelete = new FormData();
+      formDataDelete.append('email', email);
+      
+      const res = await axios.delete('/usuario',{ data: formDataDelete });
+      console.log(res);
+      window.location.href = "/pages/index";
+      } 
+      catch (error) {
+        console.error(error);
+        }
+    
+        }
+</script>
+
+
+
+

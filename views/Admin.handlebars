@@ -1,0 +1,58 @@
+    <h1>Skate Park</h1>
+
+    <div class="py-4">
+      <h2>Administración</h2>
+      <hr class="w-50" />
+
+      <table class="table w-50 m-auto">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Años de experiencia</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each usersListFinal}}
+          <tr>
+          <td>{{this.id}}</td>
+          <td><img src="../assets/img/{{this.foto}}" height="100" width="100"></td>
+          <td>{{this.nombre}}</td>
+          <td>{{this.anos_experiencia}}</td>
+          <td>{{this.especialidad}}</td>
+          {{#if this.estado}}<td class="text-success font-weight-bold"><input type="checkbox" checked onclick="turnOff('{{{this.email}}}')"/></td> {{/if}}
+          {{#unless this.estado}}<td class="text-warning font-weight-bold"><input type="checkbox" onclick="turnOn('{{{this.email}}}')"/></td>{{/unless}}>
+          
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const turnOff = async (email)=>{
+        try{
+          alert("desactivado el email: : "+email)
+          const responseOff = await axios.put('/pages/Datos',[{	"email": email, "estado": false }]);
+          console.log(responseOff);
+          location.reload();
+        }
+        catch(error){
+          console.log(error)
+        }
+      }
+      const turnOn = async (email)=>{
+        try{
+          alert("activado el email: : "+email)
+          const responseOn = await axios.put('/pages/Datos',[{	"email": email, "estado": true }]);
+          console.log(responseOn);
+          location.reload();
+        }
+        catch(error){
+          console.log(error)
+        }
+      }
+    </script>

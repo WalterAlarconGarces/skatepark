@@ -1,0 +1,48 @@
+    <h1>Skate Park</h1>
+
+    <div class="py-5">
+      <h2>Iniciar Sesión</h2>
+      <hr class="w-50" />
+
+      
+        <div class="form-group">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control w-50 m-auto" name="email" id="email"/>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control w-50 m-auto" name="password" id="password"/>
+          </div>
+        </div>
+        <button class="btn btn-success mb-3" onclick="ingresar()">Ingresar</button>
+        <p>¿Aún no tienes cuenta? <a href="/pages/Registro">Regístrate</a></p>
+      
+    </div>
+
+<script>
+  const ingresar = async () =>{
+    email = document.getElementById("email").value
+    password = document.getElementById("password").value
+    try{
+      const response = await axios.post("/pages/Login",[{	"email": email, "password": password}]);
+		  let token = response.data.token
+      
+      if(token){
+        sessionStorage.setItem("token", token);
+        
+        //await axios.get("/pages/Datos", [{	"token": token,}])
+        
+        window.location.href =`/pages/Datos?email=${email}`;
+        //window.location.replace(`/pages/Datos?email=${email}`);
+      }else{
+        alert(response.data)
+      }
+
+    }
+    catch(error){
+      console.log(error)
+    }
+
+  }
+</script>
