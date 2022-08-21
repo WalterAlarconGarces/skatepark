@@ -1,6 +1,6 @@
 const express = require("express");
 let router = express.Router();
-const userController = require("../controllers/userController")
+const userController = require("/controllers/userController")
 var bodyParser = require('body-parser');
 //app.use(bodyParser.urlencoded({ extended: false }));
 const expressFileUpload = require("express-fileupload");

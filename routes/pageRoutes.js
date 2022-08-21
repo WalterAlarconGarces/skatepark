@@ -1,7 +1,7 @@
 const express = require("express");
 var router = express.Router();
-const userController = require("../controllers/userController")
-const pageController = require("../controllers/pageController")
+const userController = require("/controllers/userController")
+const pageController = require("/controllers/pageController")
 const axios = require('axios');
 
 var bodyParser = require('body-parser');

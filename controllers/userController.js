@@ -1,5 +1,5 @@
 const express = require("express");
-const Users = require("../models/users")
+const Users = require("/models/users")
 const fs = require("fs")
 const expressFileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
@@ -11,7 +11,7 @@ exports.NewUser=async(req,res)=>{
         const {foto_perfil} = req.files
         const {name} = foto_perfil
                 
-        foto_perfil.mv(`./assets/img/${data.email}.jpg`, (err)=>{
+        foto_perfil.mv(`/assets/img/${data.email}.jpg`, (err)=>{
             
             
         })

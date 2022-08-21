@@ -1,19 +1,19 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
 require('dotenv').config()
-require("./models/users")
+require("/models/users")
 const app = express();
-const db = require('./config/db')
+const db = require('/config/db')
 
 app.get("/",(req,res)=>{
   res.redirect(`/pages/index`)
 })
 //Usa pageRoutes para administrar los endpoints de  "/pages"
-const pageRoutes = require('./routes/pageRoutes')
+const pageRoutes = require('/routes/pageRoutes')
 app.use("/pages",pageRoutes())
 
 //Usa userRoutes para administar los endpoints que comienzan con "/usuario"
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require('/routes/userRoutes')
 app.use("/usuario", userRoutes())
 
 const port = process.env.PORT;

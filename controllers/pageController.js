@@ -1,4 +1,4 @@
-const Users = require("../models/users")
+const Users = require("/models/users")
 const axios = require('axios');
 const jwt = require("jsonwebtoken");
 const { stringify } = require("uuid");
