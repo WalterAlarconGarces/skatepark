@@ -1,7 +1,7 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
 require('dotenv').config()
-require("/models/users")
+require("/models/users.js")
 const app = express();
 const db = require('/config/db')
 
