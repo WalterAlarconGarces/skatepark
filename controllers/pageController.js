@@ -6,7 +6,7 @@ require('dotenv').config()
 
 exports.IndexPage = async (req,res)=>{
     try {
-        usersList = await axios.get(`http://localhost:${process.env.PORT}/usuario`)
+        usersList = await axios.get(`/usuario`)
         let usersListFinal = usersList.data
         res.render("index", {usersListFinal});
     } catch (error) {
@@ -36,7 +36,7 @@ exports.Datos = async (req,res)=>{
 
 exports.Admin = async (req,res)=>{
     try {
-        usersList = await axios.get(`http://localhost:${process.env.PORT}/usuario`)
+        usersList = await axios.get(`/usuario`)
         let usersListFinal = usersList.data
         res.render("Admin", {usersListFinal});
     } catch (error) {

@@ -6,7 +6,7 @@ const app = express();
 const db = require('./config/db')
 
 app.get("/",(req,res)=>{
-  res.redirect(`http://localhost:${process.env.PORT}/pages/index`)
+  res.redirect(`/pages/index`)
 })
 //Usa pageRoutes para administrar los endpoints de  "/pages"
 const pageRoutes = require('./routes/pageRoutes')
