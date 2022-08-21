@@ -1,9 +1,9 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
 require('dotenv').config()
-require("./models/users.js")
+require("/models/users.js")
 const app = express();
-const db = require('./config/db.js')
+const db = require('/config/db.js')
 
 app.get("/",(req,res)=>{
   res.redirect(`/pages/index`)
