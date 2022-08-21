@@ -4,7 +4,7 @@ require('dotenv').config()
 ///por revisar
 require("./models/users")
 const app = express();
-const db = require('/config/db.js')
+const db = require(__dirname+'/config/db.js')
 
 app.get("/",(req,res)=>{
   res.redirect(`/pages/index`)
