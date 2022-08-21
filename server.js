@@ -2,7 +2,7 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 require('dotenv').config()
 ///por revisar
-require(".users")
+require("./models/users")
 const app = express();
 const db = require('/config/db.js')
 
