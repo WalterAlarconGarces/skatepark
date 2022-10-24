@@ -1,12 +1,12 @@
 const express = require("express");
 var router = express.Router();
 const userController = require("/controllers/userController")
-const pageController = require("/controllers/pageController")
+
 const axios = require('axios');
 
 var bodyParser = require('body-parser');
 //const { default: axios } = require("axios");
-router.use(bodyParser.json());
+
 module.exports = () =>{
     router.get("/index", pageController.IndexPage);
 
